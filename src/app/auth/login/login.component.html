@@ -1,0 +1,21 @@
+<div class="temp">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" formControlName="username" />
+            <div style="color: #860A35;" *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').touched">
+                Username is required.
+            </div>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" formControlName="password" />
+            <div style="color: #860A35;" *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+                Password is required.
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+</div>
