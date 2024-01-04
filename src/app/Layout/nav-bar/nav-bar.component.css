@@ -1,0 +1,30 @@
+.upper{
+    background-color: #2D3250;
+}
+.nav-item{
+    color: #F6B17A !important;
+}
+.navbar-light .navbar-brand {
+    color: #f9007efa;
+}
+#green a{
+    text-decoration: none !important;
+    color: black;
+    font-size: 18px;
+}
+#green a:hover{
+    font-size: 20px;
+}
+.navTop{
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+.show .navTop{
+    display: flex;
+    width: 100%;
+    flex-direction: column-reverse;
+}
+.base{
+    background: url('src\assets\images\homePage.gif');
+}

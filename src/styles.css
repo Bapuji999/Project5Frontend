@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+}
+
+#green {
+    height: 100%;
+    background: #F6B17A;
+    text-align: center;
+    color: black;
+    padding-top: 20px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.glow-text {
+    text-shadow: 0 0 10px rgba(0, 0, 255, 0.87), 0 0 20px rgba(0, 0, 255,rgba(0, 0, 255, 0.685)22), 0 0 30px #00f; /* Adjust the shadow color and size */
+    animation: glow 2s ease-in-out infinite; /* Adjust the animation duration and timing function */
+  }
+
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+    }
+    50% {
+      text-shadow: 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f;
+    }
+    100% {
+      text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+    }
+  }

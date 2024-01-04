@@ -1,0 +1,5 @@
+<div class="container-fluid main glow-text">
+    <div *ngFor="let vendor of vendors" class="col"  [routerLink]="['/vendors', vendor.vendorId]">
+        {{vendor.vendorName}}
+    </div>
+</div>
