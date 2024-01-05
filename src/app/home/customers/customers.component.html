@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="products glow-text">
+        <div *ngFor="let customer of Customers" class="product">
+            <div>
+                <div class="name">
+                    {{customer.customerName}}
+                </div>
+                <div>
+                    Email: {{customer.customerEmail}}
+                </div>
+                <div>
+                    C {{customer.customerPhone}}
+                </div>
+            </div>
+            <div (click)="deactivate(customer.customerId)">
+                <i  class="fas fa-trash bounce"></i>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="products glow-text">
+        <div *ngFor="let product of products" class="product">
+            <div class="image-container">
+                <img [src]="product.imagePath" alt="Product Image" class="cover-image">
+            </div>
+            <div>
+                {{product.productName}}
+            </div>
+            <div>
+                Price: {{product.price}}
+            </div>
+            <div>
+                Rating: {{product.rating}}
+            </div>
+            <div>
+                Category Name: {{product.categoryName}}
+            </div>
+            <div>
+                Vendor Name: {{product.vendorName}}
+            </div>
+        </div>
+    </div>
+</div>

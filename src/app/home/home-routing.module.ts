@@ -8,6 +8,10 @@ import { CategoriesDetailComponent } from './categories-detail/categories-detail
 import { ProductsComponent } from './products/products.component';
 import { LikesComponent } from './likes/likes.component';
 import { isCustomerGuard } from '../Guards/is-customer.guard';
+import { CustomersComponent } from './customers/customers.component';
+import { adminGuard } from '../Guards/admin.guard';
+import { MyproductsComponent } from './myproducts/myproducts.component';
+import { vendorGuard } from '../Guards/vendor.guard';
 
 const routes: Routes = [
   {path:'', component:MainPageComponent},
@@ -16,6 +20,8 @@ const routes: Routes = [
   {path:'categories', component:CategoriesComponent},
   {path:'categories/:id', component:CategoriesDetailComponent},
   {path:'products', component:ProductsComponent},
+  {path:'customers', component:CustomersComponent, canActivate:[adminGuard]},
+  {path:'myProducts', component:MyproductsComponent, canActivate:[vendorGuard]},
   {path:'likes', component:LikesComponent, canActivate:[isCustomerGuard]},
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '*', redirectTo: '', pathMatch: 'full' }
