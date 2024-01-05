@@ -3,11 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { VendorsDetailComponent } from './vendors-detail/vendors-detail.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoriesDetailComponent } from './categories-detail/categories-detail.component';
+import { ProductsComponent } from './products/products.component';
+import { LikesComponent } from './likes/likes.component';
+import { isCustomerGuard } from '../Guards/is-customer.guard';
 
 const routes: Routes = [
   {path:'', component:MainPageComponent},
   {path:'vendors', component:VendorsComponent},
   {path:'vendors/:id', component:VendorsDetailComponent},
+  {path:'categories', component:CategoriesComponent},
+  {path:'categories/:id', component:CategoriesDetailComponent},
+  {path:'products', component:ProductsComponent},
+  {path:'likes', component:LikesComponent, canActivate:[isCustomerGuard]},
+  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '*', redirectTo: '', pathMatch: 'full' }
 ];
 

@@ -1,13 +1,17 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, delay, finalize } from 'rxjs';
+import { Observable, catchError, delay, finalize, throwError } from 'rxjs';
 import { LoaderService } from '../Loader/loader.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorService  implements HttpInterceptor {
-  constructor(private loaderService: LoaderService) { }
+  constructor(
+    private loaderService: LoaderService,
+    private router: Router
+    ) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loaderService.showLoader();
     const modifiedRequest = req.clone({
@@ -17,7 +21,14 @@ export class InterceptorService  implements HttpInterceptor {
       }
     });
     return next.handle(modifiedRequest).pipe(
-      delay(600),
+      delay(400),// this is for visualising loader
+      catchError((error: any) => {
+        if (error instanceof HttpErrorResponse && error.status === 401) {
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+        return throwError(() => error);;
+      }),
       finalize(() =>this.loaderService.hideLoader())
     );
   }

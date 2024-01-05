@@ -1,17 +1,6 @@
-<div class="container-fluid" *ngIf="vendorRecived">
-    <div class="detail">
-        <div>
-            Name: {{vendorDetail.vendorName}}
-        </div>
-        <div>
-            Email: {{vendorDetail.vendorEmail}}
-        </div>
-        <div>
-            Phone: {{vendorDetail.vendorPhone}}
-        </div>
-    </div>
+<div class="container-fluid" *ngIf="categoryRecived">
     <div class="products glow-text">
-        <div *ngFor="let product of vendorDetail.products" class="product">
+        <div *ngFor="let product of categoryDetail" class="product">
             <div class="image-container">
                 <img [src]="product.imagePath" alt="Product Image" class="cover-image">
             </div>

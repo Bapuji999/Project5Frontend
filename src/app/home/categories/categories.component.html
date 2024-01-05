@@ -1,0 +1,5 @@
+<div class="container-fluid main glow-text">
+    <div *ngFor="let category of categories" class="col"  [routerLink]="['/categories', category.categoryId]">
+        {{category.categoryName}}
+    </div>
+</div>

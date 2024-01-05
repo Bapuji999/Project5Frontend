@@ -1,46 +1,30 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, catchError, firstValueFrom, throwError } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-vendors-detail',
-  templateUrl: './vendors-detail.component.html',
-  styleUrls: ['./vendors-detail.component.css']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class VendorsDetailComponent implements OnInit {
-  products: any;
-  roll: string = '';
+export class ProductsComponent implements OnInit {
   constructor(
-    private activeRoute: ActivatedRoute,
     private http: HttpClient
   ) { }
   baseUrl: string = "https://localhost:44303/api/";
-  vendorId: number | undefined;
-  vendorDetail: any;
-  vendorRecived: boolean = false;
+  products: any;
+  roll: string = '';
   async ngOnInit() {
     var role = localStorage.getItem('roll')
     if (role != null) {
       this.roll = role;
     }
-    this.activeRoute.params.subscribe(params => {
-      this.vendorId = params['id'];
-    });
-    this.http.get(this.baseUrl + "Vendor/GetVendorDetailById?vendorId=" + this.vendorId).subscribe({
-      next: async (response) => {
-        this.vendorDetail = response;
-        this.vendorRecived = true;
-        await this.loadData();
-      },
-      error: (e) => {
-        console.log(e);
-      }
-    })
+    await this.loadData();
   }
   async loadData() {
     try {
-      this.products = this.vendorDetail.products;
+      const productsResponse = await firstValueFrom(this.http.get(this.baseUrl + "Product/GetProducts"));
+      this.products = productsResponse as any[];
       let likesResponse = await this.getLikes();
       const likes = likesResponse as any[];
       this.products = this.products.map((product: any) => {

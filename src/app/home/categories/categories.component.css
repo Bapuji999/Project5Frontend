@@ -1,0 +1,27 @@
+.main{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.col{
+    background-color: #4cb9e796;
+    border: 2px solid #3559E0;
+    height: 30%;
+    width: 50%;
+    border-radius: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    flex: 0 0 calc(40% - 10px);
+    margin: 5px;
+    box-sizing: border-box;
+    font-size: 45px;
+    font-weight: 900;
+    color: #F4F27E;
+}

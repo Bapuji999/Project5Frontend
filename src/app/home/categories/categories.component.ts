@@ -2,20 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-vendors',
-  templateUrl: './vendors.component.html',
-  styleUrls: ['./vendors.component.css']
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.css']
 })
-export class VendorsComponent implements OnInit {
+export class CategoriesComponent  implements OnInit {
   constructor(
     private http: HttpClient
   ){}
   baseUrl: string = "https://localhost:44303/api/";
-  vendors: any;
+  categories: any;
   ngOnInit(): void {
-    this.http.get(this.baseUrl + "Vendor/GetVendors").subscribe({
+    this.http.get(this.baseUrl + "Category/GetCategories").subscribe({
       next: (response) => {
-        this.vendors = response;
+        this.categories = response;
       },
       error: (e) => {
         console.log(e);

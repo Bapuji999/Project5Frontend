@@ -1,17 +1,6 @@
-<div class="container-fluid" *ngIf="vendorRecived">
-    <div class="detail">
-        <div>
-            Name: {{vendorDetail.vendorName}}
-        </div>
-        <div>
-            Email: {{vendorDetail.vendorEmail}}
-        </div>
-        <div>
-            Phone: {{vendorDetail.vendorPhone}}
-        </div>
-    </div>
+<div class="container-fluid">
     <div class="products glow-text">
-        <div *ngFor="let product of vendorDetail.products" class="product">
+        <div *ngFor="let product of products" class="product">
             <div class="image-container">
                 <img [src]="product.imagePath" alt="Product Image" class="cover-image">
             </div>
@@ -25,9 +14,12 @@
                 Rating: {{product.rating}}
             </div>
             <div>
-                CategoryName: {{product.categoryName}}
+                Category Name: {{product.categoryName}}
             </div>
-            <button *ngIf="roll == 'Customer'" class="heart" (click)="like(product.productId)">
+            <div>
+                Vendor Name: {{product.vendorName}}
+            </div>
+            <button class="heart" (click)="like(product.productId)">
                 <i *ngIf="product.isLikes" class="fas fa-heart"></i>
                 <i *ngIf="!product.isLikes" class="far fa-heart"></i>
             </button>
