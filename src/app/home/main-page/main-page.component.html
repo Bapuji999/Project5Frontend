@@ -42,5 +42,13 @@
                 Count: {{likesLength}}
             </div>
         </div>
+        <div *ngIf="roll == 'Vendor'" class="col-4" (click)="handleClick('myProducts')">
+            <div class="name">
+                MyProducts
+            </div>
+            <div class="count">
+                Count: {{myProductsLength}}
+            </div>
+        </div>
     </div>
 </div>

@@ -9,6 +9,7 @@ import { InterceptorService } from './helpers/interceptor.service';
 import { SpinnerComponent } from './Loader/spinner/spinner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AppRoutingModule,
     BrowserAnimationsModule ,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      closeButton: true
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

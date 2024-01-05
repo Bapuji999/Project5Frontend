@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, delay, finalize, throwError } from 'rxjs';
 import { LoaderService } from '../Loader/loader.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 export class InterceptorService  implements HttpInterceptor {
   constructor(
     private loaderService: LoaderService,
-    private router: Router
+    private router: Router,
+    private toaster: ToastrService
     ) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loaderService.showLoader();
@@ -27,9 +29,19 @@ export class InterceptorService  implements HttpInterceptor {
           localStorage.clear();
           this.router.navigate(['/login']);
         }
+        if (error instanceof HttpErrorResponse) {
+          if(error.statusText == 'Unknown Error'){
+            this.toaster.error(error.statusText);
+          }
+          else{
+            this.toaster.error(error.error);
+          }
+        }
         return throwError(() => error);;
       }),
-      finalize(() =>this.loaderService.hideLoader())
+      finalize(() =>{
+        this.loaderService.hideLoader();
+      })
     );
   }
 }

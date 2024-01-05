@@ -1,5 +1,15 @@
 <div class="container-fluid main glow-text">
-    <div *ngFor="let vendor of vendors" class="col"  [routerLink]="['/vendors', vendor.vendorId]">
-        {{vendor.vendorName}}
+    <div *ngFor="let vendor of vendors" class="col">
+        <div  *ngIf="roll != 'Admin'" [routerLink]="['/vendors', vendor.vendorId]">
+            {{vendor.vendorName}}
+        </div>
+        <div *ngIf="roll == 'Admin'" class="inner">
+            <div class="name" [routerLink]="['/vendors', vendor.vendorId]">
+                {{vendor.vendorName}}
+            </div>
+            <div *ngIf="roll == 'Admin'" (click)="deactivate(vendor.vendorId)">
+                <i  class="fas fa-trash bounce"></i>
+            </div>
+        </div>
     </div>
 </div>

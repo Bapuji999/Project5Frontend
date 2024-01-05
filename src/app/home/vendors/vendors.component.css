@@ -1,4 +1,4 @@
-.main{
+.main {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -7,7 +7,8 @@
     width: 100%;
     flex-wrap: wrap;
 }
-.col{
+
+.col {
     background-color: #4cb9e796;
     border: 2px solid #3559E0;
     height: 30%;
@@ -17,11 +18,27 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    cursor: pointer;
     flex: 0 0 calc(40% - 10px);
     margin: 5px;
     box-sizing: border-box;
-    font-size: 45px;
+    font-size: 3.5vw;
     font-weight: 900;
     color: #F4F27E;
+}
+
+.fa-trash {
+    font-size: 4vw;
+    color: red;
+    cursor: pointer;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.name {
+    cursor: pointer;
 }

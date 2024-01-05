@@ -22,6 +22,8 @@ export class MainPageComponent implements OnInit {
   CustomersLength: any;
   likes: any;
   likesLength: any;
+  myProducts: any;
+  myProductsLength: any;
   baseUrl: string = "https://localhost:44303/api/";
   roll: string = '';
   ngOnInit(): void {
@@ -72,6 +74,17 @@ export class MainPageComponent implements OnInit {
         next: (response) => {
           this.likes = response;
           this.likesLength = this.likes.length;
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      })
+    }
+    if (this.roll == 'Vendor') {
+      this.http.get(this.baseUrl + "Product/GetProductsOfVendor").subscribe({
+        next: (response) => {
+          this.myProducts = response;
+          this.myProductsLength = this.myProducts.length;
         },
         error: (e) => {
           console.log(e);
