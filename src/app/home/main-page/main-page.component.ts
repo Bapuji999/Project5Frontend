@@ -20,8 +20,15 @@ export class MainPageComponent implements OnInit {
   ProductsLength: any;
   Customers: any;
   CustomersLength: any;
+  likes: any;
+  likesLength: any;
   baseUrl: string = "https://localhost:44303/api/";
+  roll: string = '';
   ngOnInit(): void {
+    var role = localStorage.getItem('roll')
+    if (role != null) {
+      this.roll = role;
+    }
     this.http.get(this.baseUrl + "Vendor/GetVendors").subscribe({
       next: (response) => {
         this.vendors = response;
@@ -49,17 +56,30 @@ export class MainPageComponent implements OnInit {
         console.log(e);
       }
     })
-    this.http.get(this.baseUrl + "Admin/GetCustomers").subscribe({
-      next: (response) => {
-        this.Customers = response;
-        this.CustomersLength = this.Customers.length;
-      },
-      error: (e) => {
-        console.log(e);
-      }
-    })
+    if (this.roll == 'Admin') {
+      this.http.get(this.baseUrl + "Admin/GetCustomers").subscribe({
+        next: (response) => {
+          this.Customers = response;
+          this.CustomersLength = this.Customers.length;
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      })
+    }
+    if (this.roll == 'Customer') {
+      this.http.get(this.baseUrl + "Customer/GetCustomerIntrest").subscribe({
+        next: (response) => {
+          this.likes = response;
+          this.likesLength = this.likes.length;
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      })
+    }
   }
   handleClick(link: string) {
-    this.route.navigate(['/'+link])
+    this.route.navigate(['/' + link])
   }
 }

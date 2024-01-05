@@ -1,17 +1,5 @@
-.detail {
-    background-color: #4cb9e796;
-    border: 2px solid #3559E0;
-    height: 30%;
-    width: 40%;
-    border-radius: 2%;
-    margin: 2%;
-    padding: 4%;
-    font-size: 35px;
-    font-weight: 700;
-    color: #27005D;
-}
-
 .products {
+    margin-top: 2%;
     display: flex;
     justify-content: space-between;
 }

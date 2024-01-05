@@ -8,16 +8,6 @@
                 Count: {{vendorsLength}}
             </div>
         </div>
-        <div class="col-4" (click)="handleClick('customers')">
-            <div class="name">
-                Customers
-            </div>
-            <div class="count">
-                Count: {{CustomersLength}}
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-4" (click)="handleClick('products')">
             <div class="name">
                 Products
@@ -26,12 +16,30 @@
                 Count: {{ProductsLength}}
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-4" (click)="handleClick('categories')">
             <div class="name">
                 Categories
             </div>
             <div class="count">
                 Count: {{CategoriesLength}}
+            </div>
+        </div>
+        <div *ngIf="roll == 'Admin'" class="col-4" (click)="handleClick('customers')">
+            <div class="name">
+                Customers
+            </div>
+            <div class="count">
+                Count: {{CustomersLength}}
+            </div>
+        </div>
+        <div *ngIf="roll == 'Customer'" class="col-4" (click)="handleClick('likes')">
+            <div class="name">
+                Likes
+            </div>
+            <div class="count">
+                Count: {{likesLength}}
             </div>
         </div>
     </div>

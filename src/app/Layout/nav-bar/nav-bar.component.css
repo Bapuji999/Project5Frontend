@@ -10,10 +10,15 @@
 #green a{
     text-decoration: none !important;
     color: black;
-    font-size: 18px;
+    font-size: 35px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5%;
 }
 #green a:hover{
-    font-size: 20px;
+    font-size: 30px;
 }
 .navTop{
     display: flex;

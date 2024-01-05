@@ -1,36 +1,35 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, catchError, firstValueFrom, throwError } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-vendors-detail',
-  templateUrl: './vendors-detail.component.html',
-  styleUrls: ['./vendors-detail.component.css']
+  selector: 'app-categories-detail',
+  templateUrl: './categories-detail.component.html',
+  styleUrls: ['./categories-detail.component.css']
 })
-export class VendorsDetailComponent implements OnInit {
-  products: any;
+export class CategoriesDetailComponent implements OnInit {
   roll: string = '';
   constructor(
     private activeRoute: ActivatedRoute,
     private http: HttpClient
   ) { }
   baseUrl: string = "https://localhost:44303/api/";
-  vendorId: number | undefined;
-  vendorDetail: any;
-  vendorRecived: boolean = false;
-  async ngOnInit() {
+  categoryId: number | undefined;
+  categoryDetail: any;
+  categoryRecived: boolean = false;
+  ngOnInit() {
     var role = localStorage.getItem('roll')
     if (role != null) {
       this.roll = role;
     }
     this.activeRoute.params.subscribe(params => {
-      this.vendorId = params['id'];
+      this.categoryId = params['id'];
     });
-    this.http.get(this.baseUrl + "Vendor/GetVendorDetailById?vendorId=" + this.vendorId).subscribe({
+    this.http.get(this.baseUrl + "Product/GetProductsByCategoryId?categoryId=" + this.categoryId).subscribe({
       next: async (response) => {
-        this.vendorDetail = response;
-        this.vendorRecived = true;
+        this.categoryDetail = response;
+        this.categoryRecived = true;
         await this.loadData();
       },
       error: (e) => {
@@ -40,18 +39,19 @@ export class VendorsDetailComponent implements OnInit {
   }
   async loadData() {
     try {
-      this.products = this.vendorDetail.products;
       let likesResponse = await this.getLikes();
       const likes = likesResponse as any[];
-      this.products = this.products.map((product: any) => {
+      this.categoryDetail = this.categoryDetail.map((product: any) => {
         const filePath = product.imagePath.split('/').pop();
         if (filePath) {
           product.imagePath = this.getImageUrl(filePath);
         } else {
           product.imagePath = '';
         }
-        let isLikes = likes.some((x: any) => x.productId == product.productId);
-        product.isLikes = isLikes;
+        if (this.roll == 'Customer') {
+          let isLikes = likes.some((x: any) => x.productId == product.productId);
+          product.isLikes = isLikes;
+        }
         return product;
       });
     } catch (error) {
@@ -68,7 +68,7 @@ export class VendorsDetailComponent implements OnInit {
       let isLikes = likes.some((x: any) => x.productId == id);
       if (isLikes) {
         await firstValueFrom(this.http.delete(this.baseUrl + "Customer/RemoveCustomerIntrest?productId=" + id, { responseType: 'text' }));
-        this.products = this.products.map((product: any) => {
+        this.categoryDetail = this.categoryDetail.map((product: any) => {
           if (id === product.productId) {
             product.isLikes = false;
           }
@@ -77,7 +77,7 @@ export class VendorsDetailComponent implements OnInit {
         return;
       }
       await firstValueFrom(this.http.post(this.baseUrl + "Customer/AddCustomerIntrest?productId=" + id, {}, { responseType: 'text' }));
-      this.products = this.products.map((product: any) => {
+      this.categoryDetail = this.categoryDetail.map((product: any) => {
         if (id === product.productId) {
           product.isLikes = true;
         }
