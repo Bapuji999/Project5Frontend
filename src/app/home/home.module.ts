@@ -12,6 +12,8 @@ import { ProductsComponent } from './products/products.component';
 import { LikesComponent } from './likes/likes.component';
 import { CustomersComponent } from './customers/customers.component';
 import { MyproductsComponent } from './myproducts/myproducts.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,12 +26,15 @@ import { MyproductsComponent } from './myproducts/myproducts.component';
     ProductsComponent,
     LikesComponent,
     CustomersComponent,
-    MyproductsComponent
+    MyproductsComponent,
+    AddProductComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class HomeModule { }
