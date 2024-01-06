@@ -21,7 +21,8 @@
                 <a [routerLink]="['/vendors']">Vendors</a>
                 <a [routerLink]="['/products']">Products</a>
                 <a *ngIf="roll == 'Admin'" [routerLink]="['/customers']">Customers</a>
-                <a *ngIf="roll == 'Vendor'" [routerLink]="['/myProducts']">MyProducts</a>
+                <a *ngIf="roll == 'Vendor'" [routerLink]="['/myProducts']">My Products</a>
+                <a *ngIf="roll == 'Vendor'" [routerLink]="['/addProduct']">Add Product</a>
                 <a *ngIf="roll == 'Customer'" [routerLink]="['/likes']">Likes</a>
             </div>
             <div class="col-10 base" style="text-align: justify;">

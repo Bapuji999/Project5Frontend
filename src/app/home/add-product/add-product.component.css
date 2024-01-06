@@ -1,0 +1,48 @@
+.container-fluid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.form{
+    background-color: #4cb9e796;
+    border: 2px solid #3559E0;
+    height: 55%;
+    width: 55%;
+    padding: 2%;
+    color: #EEEEEE;
+    font-size: 1vw;
+    font-weight: 400;
+}
+.formGroup{
+    height: 16%;
+}
+input, select{
+    outline: none;
+    border: 1px solid #4cb9e7dc;
+    border-radius: 3%;
+    background-color: #52c8fa5e;
+}
+.lableAndInput{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+select{
+    width: 60%;
+}
+input:focus {
+    outline: none;
+}
+button{
+    outline: none;
+    border: 1px solid #4cb9e7dc;
+    border-radius: 3%;
+    background-color: #52c8fa5e;
+    color: #EEEEEE;
+    font-size: 1.5vw;
+    font-weight: 500;
+}
+#image{
+    margin-left: 6rem;
+}

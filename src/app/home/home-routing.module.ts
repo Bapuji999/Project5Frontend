@@ -12,6 +12,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { adminGuard } from '../Guards/admin.guard';
 import { MyproductsComponent } from './myproducts/myproducts.component';
 import { vendorGuard } from '../Guards/vendor.guard';
+import { AddProductComponent } from './add-product/add-product.component';
 
 const routes: Routes = [
   {path:'', component:MainPageComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'products', component:ProductsComponent},
   {path:'customers', component:CustomersComponent, canActivate:[adminGuard]},
   {path:'myProducts', component:MyproductsComponent, canActivate:[vendorGuard]},
+  {path:'addProduct', component:AddProductComponent, canActivate:[vendorGuard]},
   {path:'likes', component:LikesComponent, canActivate:[isCustomerGuard]},
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '*', redirectTo: '', pathMatch: 'full' }
