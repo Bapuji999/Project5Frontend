@@ -32,17 +32,30 @@
         </div>
 
         <div class="formGroup">
-            <div class="lableAndInput"> 
+            <div class="lableAndInput">
                 <label for="categoryId">Category:</label>
                 <select id="categoryId" formControlName="categoryId">
                     <option *ngFor="let category of categories" [value]="category.categoryId">
                         {{ category.categoryName }}
                     </option>
                 </select>
+                <div class="add" (click)="showCategoryForm()">
+                    <i class="fa fa-plus-square"></i>
+                </div>
             </div>
             <div *ngIf="form.get('categoryId').hasError('required') && form.get('categoryId').touched"
                 style="color: red;">
                 Category is required.
+            </div>
+        </div>
+
+        <div class="formGroup cat" *ngIf="addCategory">
+            <div class="lableAndInput">
+                <label for="categoryName">Category Name:</label>
+                <input type="text" [(ngModel)]="categoryName" name="categoryName"  [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="add save" (click)="categoryAdd()">
+                Save
             </div>
         </div>
 
@@ -54,6 +67,9 @@
             </div>
         </div>
 
-        <button type="submit" class=" glow-text" [disabled]="!form.valid">Submit</button>
+        <button type="submit" class="add glow-text" [disabled]="!form.valid">Submit</button>
+    </form>
+    <form>
+
     </form>
 </div>

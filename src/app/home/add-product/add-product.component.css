@@ -29,7 +29,8 @@ input, select{
     justify-content: space-between;
 }
 select{
-    width: 60%;
+    width: 50%;
+    margin-left: 13%;
 }
 input:focus {
     outline: none;
@@ -45,4 +46,21 @@ button{
 }
 #image{
     margin-left: 6rem;
+}
+.add{
+    cursor: pointer;
+}
+.cat{
+    display: flex;
+    align-items: center;
+}
+.save{
+    height: 40%;
+    font-size: 1vw;
+    margin-left: 2%;
+    outline: none;
+    border: 1px solid #4cb9e7dc;
+    border-radius: 3%;
+    background-color: #52c8fa5e;
+    color: #EEEEEE;
 }
