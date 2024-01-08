@@ -14,13 +14,14 @@ export class AddProductComponent implements OnInit {
     private http: HttpClient,
     private toster:ToastrService
   ) { }
+  addCategory: boolean =false;
   form: any;
-  categories = [
-    { "categoryId": 1, "categoryName": "Shoes" },
-    { "categoryId": 20, "categoryName": "Clothing" }
-  ];
+  categories:any;
+  categoryName: string = ''
   baseUrl: string = "https://localhost:44303/api/";
+  formData: any = new FormData();
   ngOnInit() {
+    this.getCategories();
     this.form = this.fb.group({
       productName: ['', [Validators.required]],
       price: ['', [Validators.required]],
@@ -29,7 +30,16 @@ export class AddProductComponent implements OnInit {
       image: [null, [Validators.required]]
     });
   }
-  formData: any = new FormData();
+  getCategories(){
+    this.http.get(this.baseUrl + "Category/GetCategories").subscribe({
+      next: (response) => {
+        this.categories = response;
+      },
+      error: (e) => {
+        console.log(e);
+      }
+    });
+  }
   onSubmit() {
     if (this.form.valid) {
       const categoryId = this.form.value.categoryId;
@@ -56,5 +66,25 @@ export class AddProductComponent implements OnInit {
     if (file) {
       this.formData.append("image", file);
     }
+  }
+  showCategoryForm(){
+    this.addCategory = !this.addCategory;
+  }
+  categoryAdd(){
+    if(this.categoryName == ''){
+      this.toster.warning("Category can not be empty");
+      return;
+    }
+    const apiUrl = `${this.baseUrl}Category/AddCategory?categoryName=${this.categoryName}`;
+    this.http.post(apiUrl, {}, {responseType:'text'}).subscribe({
+      next: (response) => {
+        this.toster.success(response);
+        this.getCategories();
+      },
+      error: (error) => {
+        this.toster.error(error.error);
+        console.error('API error:', error.error.title);
+      }
+    });
   }
 }
